@@ -23,6 +23,10 @@ def record_audio():
     if os.path.exists(filename):
         os.remove(filename)
         print(f"Previous file {filename} removed.")
+    
+    if os.path.exists("output.mp3"):
+        os.remove("output.mp3")
+        print("Previous file output.mp3 removed.")
 
     p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
@@ -66,5 +70,3 @@ def record_audio():
 
     # Convert wav to mp3
     convert_wav_to_mp3("output.wav", "output.mp3")
-
-record_audio()
