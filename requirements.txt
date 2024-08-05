@@ -1,0 +1,8 @@
+whisper
+dotenv
+pydub
+threading
+wave
+os
+pyaudio
+time
