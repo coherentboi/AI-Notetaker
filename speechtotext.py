@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import whisper
 
-def write_transcription_to_file(transcription, output_file_path="transcript.txt"):
+def write_transcription_to_file(transcription, output_file_path=os.path.join("speech", "transcript.txt")):
     
     if os.path.exists(output_file_path):
         os.remove(output_file_path)
@@ -16,7 +16,7 @@ def write_transcription_to_file(transcription, output_file_path="transcript.txt"
     print(f"Transcription has been written to {output_file_path}")
 
 def transcribe_audio():
-    filename = "output.mp3"
+    filename = os.path.join("speech", "output.mp3")
 
     if not os.path.exists(filename):
         return

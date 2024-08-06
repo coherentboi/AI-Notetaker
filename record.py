@@ -17,15 +17,17 @@ def record_audio():
     sample_format = pyaudio.paInt16  # 16 bits per sample
     channels = 1
     sample_rate = 16000  # 16 kHz
-    filename = "output.wav"
+    wavFilename = os.path.join("speech","output.wav")
 
     # Ensure previous recordings are removed
-    if os.path.exists(filename):
-        os.remove(filename)
-        print(f"Previous file {filename} removed.")
+    if os.path.exists(wavFilename):
+        os.remove(wavFilename)
+        print(f"Previous file {wavFilename} removed.")
     
-    if os.path.exists("output.mp3"):
-        os.remove("output.mp3")
+    mp3Filename = os.path.join("speech", "output.mp3")
+
+    if os.path.exists(mp3Filename):
+        os.remove(mp3Filename)
         print("Previous file output.mp3 removed.")
 
     p = pyaudio.PyAudio()  # Create an interface to PortAudio
@@ -61,7 +63,7 @@ def record_audio():
     print('Finished recording')
 
     # Save the recorded data as a WAV file
-    wf = wave.open(filename, 'wb')
+    wf = wave.open(wavFilename, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(p.get_sample_size(sample_format))
     wf.setframerate(sample_rate)
@@ -69,4 +71,4 @@ def record_audio():
     wf.close()
 
     # Convert wav to mp3
-    convert_wav_to_mp3("output.wav", "output.mp3")
+    convert_wav_to_mp3(wavFilename, mp3Filename)
